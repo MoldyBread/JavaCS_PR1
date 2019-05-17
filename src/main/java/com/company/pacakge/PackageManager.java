@@ -7,18 +7,13 @@ public class PackageManager {
     private byte[] data;
     private int encLen;
 
-    public PackageManager(byte[] data) throws InvalidArgumentException {
+    public PackageManager(byte[] data)  {
         this.data = data;
         encLen=data.length-16;
 
-        if(!checkPackage()){
-            throw new InvalidArgumentException(new String[]{"",""});
-        }
     }
 
-    private boolean checkPackage(){
-        System.out.println(Util.CRC(Util.subArray(data,0,13)));
-        System.out.println(sumCRC(14,15));
+    public boolean checkPackage(){
         if(getPart(Util.CRC(Util.subArray(data,0,13)),2)!=sumCRC(14,15)){
             return false;
         }
