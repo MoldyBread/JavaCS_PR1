@@ -30,9 +30,9 @@ public class Message {
         data[1] = 0x1;
         fillPart(currentNumber, 2, 8);
         fillPart(16 + data.length, 9, 13);
-        fillPart(Util.CRC(Util.subArray(data, 0, 13)), 14, 15);
+        fillPart(Util.crc(Util.subArray(data, 0, 13)), 14, 15);
         System.arraycopy(encrypted, 0, data, 16, encrypted.length);
-        fillPart(Util.CRC(encrypted), encrypted.length + 16, data.length - 1);
+        fillPart(Util.crc(encrypted), encrypted.length + 16, data.length - 1);
 
 
         return new PackageManager(data).checkPackage();

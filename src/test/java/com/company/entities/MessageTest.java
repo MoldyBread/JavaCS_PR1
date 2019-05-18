@@ -1,13 +1,14 @@
 package com.company.entities;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 public class MessageTest {
     @Test
     public void shouldReturnTrue() throws Exception {
-        Message message = new Message("123NoFalsePleas123");
+        Message message = new Message("123NoFalsePlease123");
 
-        Assert.assertTrue(message.send());
+        assertTrue(message.send());
     }
 }

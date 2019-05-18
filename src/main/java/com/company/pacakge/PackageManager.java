@@ -1,7 +1,6 @@
 package com.company.pacakge;
 
 import com.company.util.Util;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 
 public class PackageManager {
     private byte[] data;
@@ -14,11 +13,11 @@ public class PackageManager {
     }
 
     public boolean checkPackage(){
-        if(getPart(Util.CRC(Util.subArray(data,0,13)),2)!=sumCRC(14,15)){
+        if(getPart(Util.crc(Util.subArray(data,0,13)),2)!=sumCRC(14,15)){
             return false;
         }
 
-        return getPart(Util.CRC(Util.subArray(data, 16, encLen)),data.length - 1-16-encLen)
+        return getPart(Util.crc(Util.subArray(data, 16, encLen)),data.length - 1-16-encLen)
                 == sumCRC(16 + encLen, data.length - 1);
     }
 

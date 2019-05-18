@@ -2,14 +2,13 @@ package com.company.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
 import java.security.Key;
 
 public class Util {
     private static Key aesKey = new SecretKeySpec("Bar12345Bar12345".getBytes(), "AES");
     private static Cipher cipher;
 
-    public static int CRC(byte[] input){
+    public static int crc(byte[] input) {
         int[] table = {
                 0x0000, 0xC0C1, 0xC181, 0x0140, 0xC301, 0x03C0, 0x0280, 0xC241,
                 0xC601, 0x06C0, 0x0780, 0xC741, 0x0500, 0xC5C1, 0xC481, 0x0440,
@@ -46,16 +45,15 @@ public class Util {
         };
 
 
-        byte[] bytes = input;
         int crc = 0x0000;
-        for (byte b : bytes) {
+        for (byte b : input) {
             crc = (crc >>> 8) ^ table[(crc ^ b) & 0xff];
         }
 
         return crc;
     }
 
-    public static byte[] encrypt(String message) throws Exception{
+    public static byte[] encrypt(String message) throws Exception {
         cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, aesKey);
         return cipher.doFinal(message.getBytes());
@@ -67,9 +65,9 @@ public class Util {
     }
 
 
-    public static byte[] subArray(byte[] data, int start, int end){
-        byte[] res = new byte[end-start+1];
-        System.arraycopy(data,start,res,0,end-start+1);
+    public static byte[] subArray(byte[] data, int start, int end) {
+        byte[] res = new byte[end - start + 1];
+        System.arraycopy(data, start, res, 0, end - start + 1);
         return res;
     }
 }
