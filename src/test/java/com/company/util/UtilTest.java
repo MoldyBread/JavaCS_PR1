@@ -1,5 +1,7 @@
 package com.company.util;
 
+import com.company.sevices.Decryptor;
+import com.company.sevices.Encryptor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,7 +9,7 @@ public class UtilTest {
 
     @Test
     public void shouldEncryptAndDecrypt() throws Exception {
-        String actual = Util.decrypt(Util.encrypt("My string"));
+        String actual = new Decryptor().decrypt(new Encryptor().encrypt("My string"));
         String expected = "My string";
 
         Assert.assertEquals(expected, actual);

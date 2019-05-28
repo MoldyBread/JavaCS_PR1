@@ -1,6 +1,7 @@
 package com.company.entities;
 
-import com.company.pacakge.PackageManager;
+import com.company.sevices.Encryptor;
+import com.company.sevices.implementation.MessageChecker;
 import com.company.util.Util;
 
 import java.util.Random;
@@ -23,19 +24,18 @@ public class Message {
         currentNumber = ++number;
     }
 
-    public boolean send() throws Exception {
-        byte[] encrypted = Util.encrypt(message);
-        data = new byte[16 + encrypted.length];
+    public byte[] getData() throws Exception {
+        byte[] encrypted =  new Encryptor().encrypt(message);
+        data = new byte[18 + encrypted.length];
         data[0] = 0xD;
         data[1] = 0x1;
         fillPart(currentNumber, 2, 8);
-        fillPart(16 + data.length, 9, 13);
+        fillPart(encrypted.length, 9, 13);
         fillPart(Util.crc(Util.subArray(data, 0, 13)), 14, 15);
         System.arraycopy(encrypted, 0, data, 16, encrypted.length);
         fillPart(Util.crc(encrypted), encrypted.length + 16, data.length - 1);
 
-
-        return new PackageManager(data).checkPackage();
+        return data;
     }
 
 

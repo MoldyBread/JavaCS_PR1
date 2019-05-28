@@ -1,12 +1,12 @@
-package com.company.pacakge;
+package com.company.sevices.implementation;
 
 import com.company.util.Util;
 
-public class PackageManager {
+public class MessageChecker {
     private byte[] data;
     private int encLen;
 
-    public PackageManager(byte[] data)  {
+    public MessageChecker(byte[] data)  {
         this.data = data;
         encLen=data.length-16;
 

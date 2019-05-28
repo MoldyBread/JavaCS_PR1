@@ -1,12 +1,24 @@
 package com.company.util;
 
 import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 public class Util {
-    private static Key aesKey = new SecretKeySpec("Bar12345Bar12345".getBytes(), "AES");
-    private static Cipher cipher;
+    public static Key aesKey = new SecretKeySpec("Bar12345Bar12345".getBytes(), "AES");
+    public static Cipher cipher;
+
+    static {
+        try {
+            cipher = Cipher.getInstance("AES");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static int crc(byte[] input) {
         int[] table = {
@@ -51,17 +63,6 @@ public class Util {
         }
 
         return crc;
-    }
-
-    public static byte[] encrypt(String message) throws Exception {
-        cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.ENCRYPT_MODE, aesKey);
-        return cipher.doFinal(message.getBytes());
-    }
-
-    public static String decrypt(byte[] input) throws Exception {
-        cipher.init(Cipher.DECRYPT_MODE, aesKey);
-        return new String(cipher.doFinal(input));
     }
 
 
