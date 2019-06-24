@@ -1,4 +1,4 @@
-package com.company.entities;
+package com.company.entitiy;
 
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
 package com.company.util;
 
-import com.company.sevices.Decryptor;
-import com.company.sevices.Encryptor;
+import com.company.sevice.Decryptor;
+import com.company.sevice.Encryptor;
 import org.junit.Assert;
 import org.junit.Test;
 

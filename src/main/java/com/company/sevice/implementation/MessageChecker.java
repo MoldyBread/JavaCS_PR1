@@ -1,7 +1,8 @@
-package com.company.sevices.implementation;
+package com.company.sevice.implementation;
 
 import com.company.util.Util;
 
+@Deprecated
 public class MessageChecker {
     private byte[] data;
     private int encLen;

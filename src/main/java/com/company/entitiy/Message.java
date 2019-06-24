@@ -1,7 +1,6 @@
-package com.company.entities;
+package com.company.entitiy;
 
-import com.company.sevices.Encryptor;
-import com.company.sevices.implementation.MessageChecker;
+import com.company.sevice.Encryptor;
 import com.company.util.Util;
 
 import java.util.Random;
